@@ -1,0 +1,3 @@
+rate-limiter:
+  max-tokens: 2
+  refill-rate: 5

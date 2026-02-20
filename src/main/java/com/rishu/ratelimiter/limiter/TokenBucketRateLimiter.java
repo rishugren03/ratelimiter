@@ -1,8 +1,11 @@
 package com.rishu.ratelimiter.limiter;
 
+import com.rishu.ratelimiter.config.RateLimiterConfig;
+import org.springframework.stereotype.Component;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+@Component
 public class TokenBucketRateLimiter implements RateLimiter {
 
     private final int maxTokens;
@@ -11,9 +14,9 @@ public class TokenBucketRateLimiter implements RateLimiter {
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
 
 //constructor
-    public TokenBucketRateLimiter(int maxTokens, double refillRate) {
-        this.maxTokens = maxTokens;
-        this.refillRate = refillRate;
+    public TokenBucketRateLimiter(RateLimiterConfig config) {
+        this.maxTokens = config.getMaxTokens();
+        this.refillRate = config.getRefillRate();
     }
 
     @Override
